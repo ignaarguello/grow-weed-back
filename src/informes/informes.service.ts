@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateInformeDto } from './dto/create-informe.dto';
 import { UpdateInformeDto } from './dto/update-informe.dto';
@@ -20,8 +20,11 @@ export class InformesService {
     return lista;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} informe`;
+  async findOne(_id: string) {
+    const checkExistInforme = await this.informesModules.findOne({ _id })
+    if (!checkExistInforme) throw new HttpException('Informe no encontrado', 400)
+
+    return checkExistInforme
   }
 
   update(id: number, updateInformeDto: UpdateInformeDto) {

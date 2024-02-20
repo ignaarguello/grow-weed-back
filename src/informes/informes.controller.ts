@@ -8,7 +8,7 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('informes')
 @Controller('informes')
 export class InformesController {
-  constructor(private readonly informesService: InformesService) {}
+  constructor(private readonly informesService: InformesService) { }
 
   @Post()
   create(@Body() createInformeDto: CreateInformeDto) {
@@ -20,9 +20,10 @@ export class InformesController {
     return this.informesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.informesService.findOne(+id);
+  //* Obtener Por ID
+  @Get(':_id')
+  findOneById(@Param('_id') _id: string) {
+    return this.informesService.findOne(_id);
   }
 
   @Patch(':id')
