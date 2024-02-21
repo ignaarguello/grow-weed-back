@@ -27,8 +27,10 @@ export class InformesService {
     return checkExistInforme
   }
 
-  update(id: number, updateInformeDto: UpdateInformeDto) {
-    return `This action updates a #${id} informe`;
+  async update(_id: string, updateInformeDto: UpdateInformeDto) {
+    const checkExistInforme = await this.informesModules.findOneAndUpdate({ _id }, updateInformeDto, { new: true })
+    if (!checkExistInforme) throw new HttpException('Informe no encontrado', 400)
+    return updateInformeDto
   }
 
   remove(id: number) {

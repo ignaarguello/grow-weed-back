@@ -26,9 +26,9 @@ export class InformesController {
     return this.informesService.findOne(_id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInformeDto: UpdateInformeDto) {
-    return this.informesService.update(+id, updateInformeDto);
+  @Patch(':_id')
+  update(@Param('_id') _id: string, @Body() updateInformeDto: UpdateInformeDto) {
+    return this.informesService.update(_id, updateInformeDto);
   }
 
   @Delete(':id')
