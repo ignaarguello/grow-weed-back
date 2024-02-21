@@ -31,8 +31,8 @@ export class InformesController {
     return this.informesService.update(_id, updateInformeDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.informesService.remove(+id);
+  @Delete(':_id')
+  remove(@Param('_id') _id: string) {
+    return this.informesService.remove(_id);
   }
 }

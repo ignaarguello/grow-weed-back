@@ -33,7 +33,9 @@ export class InformesService {
     return updateInformeDto
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} informe`;
+  async remove(_id: string) {
+    const checkExistInforme = await this.informesModules.findOneAndDelete({ _id })
+    if (!checkExistInforme) throw new HttpException('Informe no encontrado', 400)
+    return `Informe Eliminado ${checkExistInforme}`;
   }
 }
